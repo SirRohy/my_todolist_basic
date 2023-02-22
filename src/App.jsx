@@ -3,12 +3,17 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import DarkMode from './react_components/DarkMode'
 import DarkModeReactive from './react_components/DarkModeReactive'
+import TopBar from './react_components/TopBar'
+import TodoItems from './react_components/TodoItems'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div className="App">
+      <TopBar/>
+      <DarkModeReactive/>
+      <TodoItems/>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src="/vite.svg" className="logo" alt="Vite logo" />
@@ -31,7 +36,8 @@ function App() {
       </p>
       <button class="bg-red-300 text-green-400">Here we go! Don't F this up</button>
       <DarkMode/>
-      <DarkModeReactive/>
+      
+      
     </div>
   )
 }
