@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import DarkMode from './react_components/DarkMode'
+import DarkModeReactive from './react_components/DarkModeReactive'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,6 +29,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <button class="bg-red-300 text-green-400">Here we go! Don't F this up</button>
+      <DarkMode/>
+      <DarkModeReactive/>
     </div>
   )
 }
