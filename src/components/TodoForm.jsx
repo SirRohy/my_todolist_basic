@@ -1,16 +1,26 @@
-import Todo from "./Todo";
-
+// import Todo from "./Todo";
+import React, { useState } from "react";
 
 export default function TodoForm({ Todo, todos, setTodos, showTodoForm }) {
-  let urgent = Todo.urgent
-  function handleSubmit () {
+  const [newTitle, setNewTitle] = useState(Todo.title);
+  const [newDescription, setNewDescription] = useState(Todo.description);
+  const [newDueDate, setNewDueDate] = useState(Todo.setTodos);
+  const [newUrgent, setNewUrgent] = useState(Todo.urgent);
+  
+  function handleSubmit(e) {
     e.preventDefault();
-    const newTodo = new Todo(newTitle, newDescription, newDueDate);
-    console.log(newTodo);
-    // (somehow delete the last one)
-    // setTodos [...todos, Todo]
-    // (sort the Todo list based on sorting laws)
-    // Todo.render()
+    const newTodo = {
+      id: Date.now(),
+      title: newTitle,
+      description: newDescription,
+      dueDate: newDueDate,
+      urgent: newUrgent,
+    };
+    setTodos([...todos, newTodo]);
+    sortTodos("chronological");
+    showTodoForm(false);
+    console.log(setTodos);
+    // I am assuming it already renders the todolist here but it doesn't
   }
 
   return (
@@ -28,7 +38,8 @@ export default function TodoForm({ Todo, todos, setTodos, showTodoForm }) {
             id="title"
             type="text"
             placeholder="Your title here"
-            value={Todo.title}
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
           />
         </div>
         <div className="mb-4">
@@ -42,8 +53,8 @@ export default function TodoForm({ Todo, todos, setTodos, showTodoForm }) {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="description"
             type="text"
-            placeholder="Description"
-            value={Todo.description}
+            value={newDescription}
+            onChange={(e) => setNewDescription(e.target.value)}
           />
         </div>
         <div className="mb-4">
@@ -58,13 +69,16 @@ export default function TodoForm({ Todo, todos, setTodos, showTodoForm }) {
             id="date"
             type="date"
             placeholder="Your date here"
-            value={Todo.date}
+            value={newDueDate}
+            onChange={(e) => setNewDueDate(e.target.value)}
           />
         </div>
         <label>
-          <input type="checkbox" name="myCheckbox" value="0"></input>
+          <input type="checkbox" name="urgent" checked={newUrgent} onChange={(e) => {
+            setNewUrgent(e.target.checked);
+          }} />
           Urgent?
-          </label>
+        </label>
         <div className="flex items-center justify-center">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 mx-4 rounded focus:outline-none focus:shadow-outline"
