@@ -1,7 +1,9 @@
 import { useState } from "react";
 import AddButton from "./components/AddButton";
 import Navbar from "./components/Navbar";
+import Todo from "./components/Todo";
 import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -12,7 +14,7 @@ export default function App() {
       <Navbar />
       <AddButton todoForm={todoForm} showTodoForm={showTodoForm} />
       {todoForm ? (
-        <TodoForm setTodos={setTodos} showTodoForm={showTodoForm} />
+        <TodoForm Todo={new Todo()} todos={todos} setTodos={setTodos} showTodoForm={showTodoForm} />
       ) : (
         <div></div>
       )}

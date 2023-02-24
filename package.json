@@ -20,5 +20,17 @@
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7",
     "vite": "^4.1.0"
-  }
+  },
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SirRohy/my_todolist_basic.git"
+  },
+  "author": "SirRohy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SirRohy/my_todolist_basic/issues"
+  },
+  "homepage": "https://github.com/SirRohy/my_todolist_basic#readme",
+  "description": ""
 }
