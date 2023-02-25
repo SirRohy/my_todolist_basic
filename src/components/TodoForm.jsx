@@ -1,4 +1,3 @@
-// import Todo from "./Todo";
 import React, { useState } from "react";
 
 export default function TodoForm({ Todo, todos, setTodos, showTodoForm }) {
@@ -6,7 +5,7 @@ export default function TodoForm({ Todo, todos, setTodos, showTodoForm }) {
   const [newDescription, setNewDescription] = useState(Todo.description);
   const [newDueDate, setNewDueDate] = useState(Todo.setTodos);
   const [newUrgent, setNewUrgent] = useState(Todo.urgent);
-  
+
   function handleSubmit(e) {
     e.preventDefault();
     const newTodo = {
@@ -16,16 +15,20 @@ export default function TodoForm({ Todo, todos, setTodos, showTodoForm }) {
       dueDate: newDueDate,
       urgent: newUrgent,
     };
-    setTodos([...todos, newTodo]);
-    sortTodos("chronological");
+
+    const newTodos = [...todos, newTodo];
+    setTodos(newTodos);
+    localStorage.setItem("todos", JSON.stringify(newTodos));
     showTodoForm(false);
     console.log(setTodos);
-    // I am assuming it already renders the todolist here but it doesn't
   }
 
   return (
     <div className="w-full flex justify-center">
-      <form className="bg-slate-600 shadow-md rounded px-8 pt-6 pb-8 w-8/12 max-w-screen-md" onSubmit={handleSubmit}>
+      <form
+        className="bg-slate-600 shadow-md rounded px-8 pt-6 pb-8 w-8/12 max-w-screen-md"
+        onSubmit={handleSubmit}
+      >
         <div className="mb-4">
           <label
             className="block text-slate-300 text-sm font-bold mb-2"
@@ -74,9 +77,14 @@ export default function TodoForm({ Todo, todos, setTodos, showTodoForm }) {
           />
         </div>
         <label>
-          <input type="checkbox" name="urgent" checked={newUrgent} onChange={(e) => {
-            setNewUrgent(e.target.checked);
-          }} />
+          <input
+            type="checkbox"
+            name="urgent"
+            checked={newUrgent}
+            onChange={(e) => {
+              setNewUrgent(e.target.checked);
+            }}
+          />
           Urgent?
         </label>
         <div className="flex items-center justify-center">
@@ -86,6 +94,7 @@ export default function TodoForm({ Todo, todos, setTodos, showTodoForm }) {
             onClick={(e) => {
               e.preventDefault();
               showTodoForm(false);
+              handleSubmit(e);
             }}
           >
             Add

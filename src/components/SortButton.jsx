@@ -14,7 +14,7 @@ export default function SortButton({ currentOrder, setOrder }) {
             <button 
             className="bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 rounded m-4 w-48"
             onClick={handleClick}>
-                Sort: {isChronological ? "Chronologically" : "Reverse Chronologically"}
+                Sort: {isChronological ? "Reverse Chronological" : "Chronological"}
             </button>
         </div>
     );
